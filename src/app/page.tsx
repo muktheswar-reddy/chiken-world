@@ -744,12 +744,12 @@ export default function ChikenWorldPage() {
                   Laxminarayana Layout, munnekolala, Marathahalli,<br />
                   Bengaluru, Karnataka 560037
                 </p>
-                <a href="https://maps.app.goo.gl/feXTXgXBWJMXcReW9" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ marginTop: 16, width: '100%', display: 'flex', justifyContent: 'center' }}>Get Directions</a>
+                <a href="https://www.google.com/maps/place/Chicken+world/@12.9471997,77.7041933,17z/data=!4m21!1m14!4m13!1m4!2m2!1d77.7105133!2d12.9511667!4e1!1m6!1m2!1s0x3bae138126b31887:0xd5327267b9c402ed!2sChicken+world,+No+2,+gagana+nilaya,+lakshminarayana+temple+road,+Laxminarayana+Layout,+munnekolala,+Marathahalli,+Bengaluru,+Karnataka+560037!2m2!1d77.7089566!2d12.947201!3e0!3m5!1s0x3bae138126b31887:0xd5327267b9c402ed!8m2!3d12.947201!4d77.7089566!16s%2Fg%2F11r9f797hl" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ marginTop: 16, width: '100%', display: 'flex', justifyContent: 'center' }}>Get Directions</a>
               </div>
             </div>
             <div style={{ borderRadius: 16, overflow: 'hidden', height: 400, boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
               <iframe 
-                src="https://maps.google.com/maps?q=No%202,%20gagana%20nilaya,%20lakshminarayana%20temple%20road,%20Laxminarayana%20Layout,%20munnekolala,%20Marathahalli,%20Bengaluru,%20Karnataka%20560037&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?q=Chicken%20world,%20No%202,%20gagana%20nilaya,%20lakshminarayana%20temple%20road,%20Laxminarayana%20Layout,%20munnekolala,%20Marathahalli,%20Bengaluru,%20Karnataka%20560037&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
