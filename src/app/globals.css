@@ -839,6 +839,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ========================================
+   STORE GRID
+======================================== */
+.store-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ========================================
    RESPONSIVE MISC
 ======================================== */
 @media (max-width: 768px) {
@@ -846,4 +856,5 @@ a { text-decoration: none; color: inherit; }
   .takeaway-steps { gap: 0; }
   .step:not(:last-child)::after { display: none; }
   .step { min-width: 140px; }
+  .store-grid { grid-template-columns: 1fr; gap: 24px; }
 }

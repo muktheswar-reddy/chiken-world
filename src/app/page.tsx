@@ -721,7 +721,7 @@ export default function ChikenWorldPage() {
             <h2 className="section-title">Visit Our Store</h2>
             <p className="section-subtitle">We are open 7 days a week. Drop by for the freshest cuts.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'center' }}>
+          <div className="store-grid">
             <div style={{ background: '#fff', borderRadius: 16, padding: 30, border: '1px solid #eee', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
               <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <Clock size={20} color="#C8102E" /> Store Timings
@@ -744,12 +744,12 @@ export default function ChikenWorldPage() {
                   Laxminarayana Layout, munnekolala, Marathahalli,<br />
                   Bengaluru, Karnataka 560037
                 </p>
-                <a href="#" className="btn-secondary" style={{ marginTop: 16, width: '100%', display: 'flex', justifyContent: 'center' }}>Get Directions</a>
+                <a href="https://maps.app.goo.gl/feXTXgXBWJMXcReW9" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ marginTop: 16, width: '100%', display: 'flex', justifyContent: 'center' }}>Get Directions</a>
               </div>
             </div>
             <div style={{ borderRadius: 16, overflow: 'hidden', height: 400, boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.685934571932!2d77.580643!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1689000000000!5m2!1sen!2sin" 
+                src="https://maps.google.com/maps?q=No%202,%20gagana%20nilaya,%20lakshminarayana%20temple%20road,%20Laxminarayana%20Layout,%20munnekolala,%20Marathahalli,%20Bengaluru,%20Karnataka%20560037&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
