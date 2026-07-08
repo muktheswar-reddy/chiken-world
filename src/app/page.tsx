@@ -597,7 +597,7 @@ export default function ChikenWorldPage() {
             </div>
             <h1 className="hero-title">
               Fresh Chicken,<br />
-              <em>Every day.</em><br />
+              <em>Everyday.</em><br />
               Only Takeaway.
             </h1>
             <p className="hero-desc">
