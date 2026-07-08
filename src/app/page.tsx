@@ -740,8 +740,9 @@ export default function ChikenWorldPage() {
                 </h3>
                 <p style={{ color: '#666', lineHeight: 1.6 }}>
                   CHIKEN WORLD<br />
-                  123, Main Market Road,<br />
-                  Near Central Plaza, Bengaluru - 560001
+                  No 2, gagana nilaya, lakshminarayana temple road,<br />
+                  Laxminarayana Layout, munnekolala, Marathahalli,<br />
+                  Bengaluru, Karnataka 560037
                 </p>
                 <a href="#" className="btn-secondary" style={{ marginTop: 16, width: '100%', display: 'flex', justifyContent: 'center' }}>Get Directions</a>
               </div>
@@ -794,7 +795,7 @@ export default function ChikenWorldPage() {
                   <MapPin size={18} style={{ marginTop: 2 }} />
                   <div>
                     <div style={{ color: '#fff', fontWeight: 600 }}>Store Address</div>
-                    <div style={{ fontSize: '0.9rem', lineHeight: 1.5 }}>123, Main Market Road,<br/>Bengaluru - 560001</div>
+                    <div style={{ fontSize: '0.9rem', lineHeight: 1.5 }}>No 2, gagana nilaya, lakshminarayana temple road,<br/>Laxminarayana Layout, munnekolala,<br/>Marathahalli, Bengaluru 560037</div>
                   </div>
                 </div>
               </div>
