@@ -1,6 +1,6 @@
 import type { BookingFormData } from '@/types';
 
-const WHATSAPP_NUMBER = '9611419180';
+const WHATSAPP_NUMBER = '919611419108';
 
 export function buildWhatsAppMessage(data: BookingFormData): string {
   return `Hello CHIKEN WORLD,

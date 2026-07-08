@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'CHIKEN WORLD – Premium Fresh Chicken & Eggs | Bengaluru',
-  description: 'Bengaluru\'s freshest chicken store. Country chicken, broiler cuts, boneless, eggs — all fresh daily. Reserve on WhatsApp, collect in store. Call 9611419180.',
+  description: 'Bengaluru\'s freshest chicken store. Country chicken, broiler cuts, boneless, eggs — all fresh daily. Reserve on WhatsApp, collect in store. Call +91 9611419108.',
   keywords: 'fresh chicken Bengaluru, country chicken, nati koli, broiler chicken, boneless chicken, chicken shop Bengaluru, CHIKEN WORLD',
   openGraph: {
     title: 'CHIKEN WORLD – Premium Fresh Chicken & Eggs',

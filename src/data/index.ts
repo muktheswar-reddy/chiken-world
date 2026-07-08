@@ -1,6 +1,6 @@
 import type { Product, Category, Offer, Review } from '@/types';
 
-export const WHATSAPP_NUMBER = '9611419180';
+export const WHATSAPP_NUMBER = '919611419108';
 
 export const categories: Category[] = [
   { id: 'country-chicken', nameEn: 'Country Chicken', nameKn: 'ನಾಡು ಕೋಳಿ', icon: '🐓', image: '/images/categories/country-chicken.jpg', count: 3 },
@@ -287,7 +287,7 @@ export const offers: Offer[] = [
   {
     id: 'weekly-1',
     title: 'Weekly Fresh Deal',
-    description: 'Get 10% off on all Broiler Chicken orders above ₹300. Fresh stock every morning!',
+    description: 'Get 10% off on all Broiler Chicken orders above ₹300. Fresh stock every day!',
     discount: '10% OFF',
     type: 'weekly',
     badge: 'This Week',

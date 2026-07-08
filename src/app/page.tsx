@@ -8,7 +8,7 @@ import { Phone, MapPin, Clock, X, Minus, Plus, ChevronRight, Menu, ShoppingCart 
 /* ============================================================
    DATA
 ============================================================ */
-const WHATSAPP = '9611419108';
+const WHATSAPP = '919611419108';
 
 const categories = [
   { id: 'all', label: 'All Products' },
@@ -238,7 +238,7 @@ const products = [
 const whyUs = [
   { icon: '🌿', title: 'Never Frozen', desc: 'Fresh kill daily. Zero cold-chain. Always the freshest.' },
   { icon: '🧼', title: 'Hygienically Clean', desc: 'FSSAI-compliant facility. Gloves, aprons, sanitised daily.' },
-  { icon: '🐓', title: 'Farm Sourced', desc: 'Directly sourced from trusted local farms every morning.' },
+  { icon: '🐓', title: 'Farm Sourced', desc: 'Directly sourced from trusted local farms every day.' },
   { icon: '⚡', title: 'Ready When You Are', desc: 'Order on WhatsApp and collect in minutes.' },
   { icon: '⚖️', title: 'Exact Weight', desc: 'Precision-weighed cuts. You get what you pay for.' },
   { icon: '💬', title: 'WhatsApp Orders', desc: 'Book your order anytime — we confirm instantly.' },
@@ -545,9 +545,9 @@ export default function ChikenWorldPage() {
           </div>
 
           {/* Phone */}
-          <a href="tel:9611419108" className="nav-phone" style={{ marginLeft: 'auto' }}>
+          <a href="tel:+919611419108" className="nav-phone" style={{ marginLeft: 'auto' }}>
             <Phone size={15} />
-            <span>9611419108</span>
+            <span>+91 9611419108</span>
           </a>
 
           {/* Cart Icon in Nav */}
@@ -575,8 +575,8 @@ export default function ChikenWorldPage() {
                 {n.label} <ChevronRight size={14} style={{ float: 'right', marginTop: 2 }} />
               </button>
             ))}
-            <a href="tel:9611419108" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 0', fontSize: '0.95rem', fontWeight: 700, color: '#C8102E' }}>
-              <Phone size={15} /> 9611419108
+            <a href="tel:+919611419108" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 0', fontSize: '0.95rem', fontWeight: 700, color: '#C8102E' }}>
+              <Phone size={15} /> +91 9611419108
             </a>
           </div>
         )}
@@ -597,7 +597,7 @@ export default function ChikenWorldPage() {
             </div>
             <h1 className="hero-title">
               Fresh Chicken,<br />
-              <em>Every Morning.</em><br />
+              <em>Every day.</em><br />
               Only Takeaway.
             </h1>
             <p className="hero-desc">
@@ -833,11 +833,11 @@ export default function ChikenWorldPage() {
             <div>
               <h4 style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 600, marginBottom: 20 }}>Contact</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                <a href="tel:9611419108" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: '#ffb3c1', textDecoration: 'none' }}>
+                <a href="tel:+919611419108" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: '#ffb3c1', textDecoration: 'none' }}>
                   <Phone size={18} style={{ marginTop: 2 }} />
                   <div>
                     <div style={{ color: '#fff', fontWeight: 600 }}>Call Us</div>
-                    <div style={{ fontSize: '0.9rem' }}>9611419108</div>
+                    <div style={{ fontSize: '0.9rem' }}>+91 9611419108</div>
                   </div>
                 </a>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: '#ffb3c1' }}>
