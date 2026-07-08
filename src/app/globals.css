@@ -103,7 +103,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-secondary);
-  transition: all 0.2s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-link:hover, .nav-link.active {
   color: var(--red);
@@ -119,7 +119,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: 100px;
   font-size: 0.875rem;
   font-weight: 600;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 .nav-cta:hover {
@@ -309,7 +309,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 .category-pill:hover {
@@ -342,7 +342,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 .product-card:hover {
@@ -459,7 +459,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: 'Inter', sans-serif;
 }
 .btn-whatsapp-card:hover {
@@ -529,7 +529,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: var(--radius);
   padding: 24px;
   text-align: center;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .why-card:hover {
   border-color: var(--red);
@@ -631,7 +631,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.95rem;
   border: none;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: 'Inter', sans-serif;
 }
 .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,16,46,0.3); }
@@ -649,7 +649,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.95rem;
   border: 2px solid var(--border);
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: 'Inter', sans-serif;
 }
 .btn-outline:hover { border-color: var(--text-primary); }
@@ -667,7 +667,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.95rem;
   border: none;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: 'Inter', sans-serif;
 }
 .btn-whatsapp-big:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
@@ -690,7 +690,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 20px rgba(37,211,102,0.5);
   cursor: pointer;
   z-index: 200;
-  transition: all 0.25s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
   animation: pulse-fab 2.5s infinite;
 }

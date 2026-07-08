@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Phone, MapPin, Clock, X, Minus, Plus, ChevronRight, Menu, ShoppingCart } from 'lucide-react';
 
 /* ============================================================
@@ -582,7 +583,12 @@ export default function ChikenWorldPage() {
       </header>
 
       {/* ——————— HERO ——————— */}
-      <section className="hero">
+      <motion.section 
+        className="hero" 
+        initial={{ opacity: 0, y: 20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="hero-inner">
           {/* Left copy */}
           <div>
@@ -639,10 +645,17 @@ export default function ChikenWorldPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ——————— PRODUCTS ——————— */}
-      <section className="section" id="products">
+      <motion.section 
+        className="section" 
+        id="products"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="section-inner">
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
             <div className="section-header" style={{ marginBottom: 0 }}>
@@ -661,17 +674,31 @@ export default function ChikenWorldPage() {
             ))}
           </div>
 
-          {/* Product grid */}
           <div className="product-grid">
-            {filtered.map(product => (
-              <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
+            {filtered.map((product, index) => (
+              <motion.div 
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <ProductCard product={product} onAddToCart={handleAddToCart} />
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ——————— WHY CHOOSE US ——————— */}
-      <section className="section" style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0' }}>
+      <motion.section 
+        className="section" 
+        style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="section-inner">
           <div className="section-header">
             <span className="section-label">The Difference</span>
@@ -687,10 +714,17 @@ export default function ChikenWorldPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ——————— OFFERS ——————— */}
-      <section className="section" id="offers">
+      <motion.section 
+        className="section" 
+        id="offers"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="section-inner">
           <div className="section-header">
             <span className="section-label">Deals & Offers</span>
@@ -711,10 +745,18 @@ export default function ChikenWorldPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ——————— VISIT STORE ——————— */}
-      <section className="section" id="store" style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}>
+      <motion.section 
+        className="section" 
+        id="store" 
+        style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="section-inner">
           <div className="section-header">
             <span className="section-label">Locate Us</span>
@@ -760,10 +802,17 @@ export default function ChikenWorldPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ——————— FOOTER ——————— */}
-      <footer className="footer" id="about">
+      <motion.footer 
+        className="footer" 
+        id="about"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="footer-inner">
           <div className="footer-grid">
             <div>
@@ -806,7 +855,7 @@ export default function ChikenWorldPage() {
             <div>Designed with premium quality.</div>
           </div>
         </div>
-      </footer>
+      </motion.footer>
 
       {/* Floating Cart Button (shows only when cart has items) */}
       {cartItemCount > 0 && !isCartOpen && (
