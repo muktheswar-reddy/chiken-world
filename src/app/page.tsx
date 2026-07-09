@@ -326,7 +326,7 @@ function getPriceForWeight(product: Product, weight: string) {
 }
 
 function buildWAMessage(cart: CartItem[], name: string, phone: string, total: number) {
-  let itemsText = cart.map((item, index) => {
+  const itemsText = cart.map((item, index) => {
     return `${index + 1}. ${item.product.name}\n   Weight: ${item.weight}\n   Quantity: ${item.qty}\n   Price: ₹${item.computedPrice * item.qty}`;
   }).join('\n\n');
 
@@ -532,31 +532,13 @@ function CartModal({
 /* ============================================================
    MAIN PAGE
 ============================================================ */
-const priceKeyMapping: Record<number, string> = {
-  1: 'broiler-whole',
-  2: 'skinless-curry-cut',
-  3: 'boneless',
-  4: 'breast',
-  5: 'mince-keema',
-  6: 'wings',
-  7: 'drumsticks',
-  8: 'leg-pieces',
-  9: 'broiler-curry-cut',
-  10: 'broiler-curry-cut',
-  11: 'liver',
-  12: 'gizzard',
-  13: 'country-whole',
-  14: 'eggs-piece',
-  15: 'neck',
-  16: 'feet',
-  17: 'country-curry-cut',
-};
+
 export default function ChikenWorldPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [products, setProducts] = useState(baseProducts);
+  const [products] = useState(baseProducts);
 
   const filtered = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
   
@@ -728,7 +710,7 @@ export default function ChikenWorldPage() {
               <span className="section-label">Our Menu</span>
               <h2 className="section-title">
                 Fresh Chicken Cuts
-                <span style={{ fontSize: '0.8rem', background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: '20px', marginLeft: '10px', verticalAlign: 'middle', fontWeight: 600, display: 'inline-block' }}>Today's Fresh Prices</span>
+                <span style={{ fontSize: '0.8rem', background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: '20px', marginLeft: '10px', verticalAlign: 'middle', fontWeight: 600, display: 'inline-block' }}>Today&apos;s Fresh Prices</span>
               </h2>
               <p className="section-subtitle">
                 All products are freshly prepared daily. Reserve on WhatsApp & collect.
