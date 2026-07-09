@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Phone, MapPin, Clock, X, Minus, Plus, ChevronRight, Menu, ShoppingCart } from 'lucide-react';
+import { db } from '@/lib/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 /* ============================================================
    DATA
@@ -20,14 +22,14 @@ const categories = [
   { id: 'eggs', label: 'Eggs' },
 ];
 
-const products = [
+const baseProducts = [
   {
     id: 1,
-    name: 'Broiler Chicken',
+    name: 'Broiler Chicken (Whole)',
     nameKn: 'ಬ್ರಾಯ್ಲರ್ ಕೋಳಿ',
     desc: 'Freshly slaughtered broiler chicken, cleaned and ready to cook.',
     image: '/images/chicken-curry-cut.png',
-    price: 220,
+    price: 330,
     priceUnit: '/ kg',
     pieces: '8–10 pieces',
     serves: 'Serves 3–4',
@@ -37,12 +39,27 @@ const products = [
     category: 'broiler',
   },
   {
+    id: 9,
+    name: 'Broiler Curry Cut',
+    nameKn: 'ಚಿಕನ್ ಕರ್ರಿ ಕಟ್',
+    desc: 'Classic curry cut, bone-in pieces perfect for daily cooking.',
+    image: '/images/chicken-curry-cut.png',
+    price: 350,
+    priceUnit: '/ kg',
+    pieces: '12–16 pieces',
+    serves: 'Serves 3–4',
+    weights: ['500g', '1 kg', '2 kg'],
+    badge: null,
+    badgeFresh: true,
+    category: 'broiler',
+  },
+  {
     id: 2,
-    name: 'Skinless Chicken',
+    name: 'Skinless Curry Cut',
     nameKn: 'ಚರ್ಮರಹಿತ ಚಿಕನ್',
     desc: 'Broiler chicken with skin removed — leaner and healthier choice.',
     image: '/images/skinless-chicken.png',
-    price: 240,
+    price: 380,
     priceUnit: '/ kg',
     pieces: '8–10 pieces',
     serves: 'Serves 3–4',
@@ -57,7 +74,7 @@ const products = [
     nameKn: 'ಎಲುಬಿಲ್ಲದ ಚಿಕನ್',
     desc: 'Tender boneless pieces, perfect for stir-fries, grills and curries.',
     image: '/images/boneless-chicken.png',
-    price: 380,
+    price: 480,
     priceUnit: '/ kg',
     pieces: '16–20 pieces',
     serves: 'Serves 2–3',
@@ -68,11 +85,11 @@ const products = [
   },
   {
     id: 4,
-    name: 'Chicken Breast',
+    name: 'Chicken Breast (Boneless)',
     nameKn: 'ಚಿಕನ್ ಬ್ರೆಸ್ಟ್',
     desc: 'Lean, high-protein chicken breast. Ideal for grilling and healthy meals.',
     image: '/images/chicken-breast.png',
-    price: 400,
+    price: 500,
     priceUnit: '/ kg',
     pieces: '2 pieces',
     serves: 'Serves 2',
@@ -83,11 +100,11 @@ const products = [
   },
   {
     id: 5,
-    name: 'Chicken Mince',
+    name: 'Chicken Mince (Keema)',
     nameKn: 'ಚಿಕನ್ ಕೀಮಾ',
     desc: 'Freshly minced chicken, perfect for keema curry, momos and kebabs.',
     image: '/images/chicken-keema.png',
-    price: 340,
+    price: 520,
     priceUnit: '/ kg',
     pieces: 'Minced',
     serves: 'Serves 2–3',
@@ -97,14 +114,14 @@ const products = [
     category: 'boneless',
   },
   {
-    id: 6,
-    name: 'Chicken Wings',
-    nameKn: 'ಚಿಕನ್ ವಿಂಗ್ಸ್',
-    desc: 'Crispy, juicy chicken wings — perfect for frying and BBQ.',
-    image: '/images/chicken-wings.png',
-    price: 260,
+    id: 8,
+    name: 'Chicken Leg Pieces',
+    nameKn: 'ಚಿಕನ್ ಲೆಗ್ ಪೀಸ್',
+    desc: 'Juicy full leg pieces with thigh — a family favourite for curries.',
+    image: '/images/chicken-leg.png',
+    price: 390,
     priceUnit: '/ kg',
-    pieces: '10–12 pieces',
+    pieces: '4–6 pieces',
     serves: 'Serves 2–3',
     weights: ['500g', '1 kg'],
     badge: null,
@@ -117,7 +134,7 @@ const products = [
     nameKn: 'ಚಿಕನ್ ಡ್ರಮ್ಸ್ಟಿಕ್ಸ್',
     desc: 'Meaty, flavourful drumsticks — great for roasting and frying.',
     image: '/images/chicken-leg.png',
-    price: 290,
+    price: 400,
     priceUnit: '/ kg',
     pieces: '6–8 pieces',
     serves: 'Serves 2–3',
@@ -127,49 +144,19 @@ const products = [
     category: 'special',
   },
   {
-    id: 8,
-    name: 'Chicken Leg Pieces',
-    nameKn: 'ಚಿಕನ್ ಲೆಗ್ ಪೀಸ್',
-    desc: 'Juicy full leg pieces with thigh — a family favourite for curries.',
-    image: '/images/chicken-leg.png',
+    id: 6,
+    name: 'Chicken Wings',
+    nameKn: 'ಚಿಕನ್ ವಿಂಗ್ಸ್',
+    desc: 'Crispy, juicy chicken wings — perfect for frying and BBQ.',
+    image: '/images/chicken-wings.png',
     price: 280,
     priceUnit: '/ kg',
-    pieces: '4–6 pieces',
+    pieces: '10–12 pieces',
     serves: 'Serves 2–3',
     weights: ['500g', '1 kg'],
     badge: null,
     badgeFresh: true,
     category: 'special',
-  },
-  {
-    id: 9,
-    name: 'Chicken Curry Cut',
-    nameKn: 'ಚಿಕನ್ ಕರ್ರಿ ಕಟ್',
-    desc: 'Classic curry cut, bone-in pieces perfect for daily cooking.',
-    image: '/images/chicken-curry-cut.png',
-    price: 240,
-    priceUnit: '/ kg',
-    pieces: '12–16 pieces',
-    serves: 'Serves 3–4',
-    weights: ['500g', '1 kg', '2 kg'],
-    badge: null,
-    badgeFresh: true,
-    category: 'broiler',
-  },
-  {
-    id: 10,
-    name: 'Chicken Biryani Cut',
-    nameKn: 'ಚಿಕನ್ ಬಿರಿಯಾನಿ ಕಟ್',
-    desc: 'Medium-sized bone-in pieces, cut perfectly for dum biryani and pulao.',
-    image: '/images/chicken-biryani-cut.png',
-    price: 250,
-    priceUnit: '/ kg',
-    pieces: '8–10 pieces',
-    serves: 'Serves 2–3',
-    weights: ['500g', '1 kg'],
-    badge: 'Popular',
-    badgeFresh: true,
-    category: 'broiler',
   },
   {
     id: 11,
@@ -181,7 +168,7 @@ const products = [
     priceUnit: '/ kg',
     pieces: 'Cleaned & ready',
     serves: 'Serves 2–3',
-    weights: ['250g', '500g'],
+    weights: ['250g', '500g', '1 kg'],
     badge: null,
     badgeFresh: true,
     category: 'giblets',
@@ -192,30 +179,91 @@ const products = [
     nameKn: 'ಚಿಕನ್ ಗಿಜಾರ್ಡ್',
     desc: 'Cleaned chicken gizzards — tender and flavourful when slow-cooked.',
     image: '/images/chicken-gizzard.png',
-    price: 180,
+    price: 200,
     priceUnit: '/ kg',
     pieces: 'Cleaned & ready',
     serves: 'Serves 2–3',
-    weights: ['250g', '500g'],
+    weights: ['250g', '500g', '1 kg'],
+    badge: null,
+    badgeFresh: true,
+    category: 'giblets',
+  },
+  {
+    id: 15,
+    name: 'Chicken Neck',
+    nameKn: 'ಚಿಕನ್ ನೆಕ್',
+    desc: 'Perfect for making rich chicken stock and broths.',
+    image: '/images/chicken-liver.png', // Fallback image
+    price: 160,
+    priceUnit: '/ kg',
+    pieces: 'Cleaned',
+    serves: 'Serves 2–3',
+    weights: ['500g', '1 kg'],
+    badge: null,
+    badgeFresh: true,
+    category: 'giblets',
+  },
+  {
+    id: 16,
+    name: 'Chicken Feet',
+    nameKn: 'ಚಿಕನ್ ಫೀಟ್',
+    desc: 'Cleaned chicken feet, great for soups and rich in collagen.',
+    image: '/images/chicken-liver.png', // Fallback image
+    price: 140,
+    priceUnit: '/ kg',
+    pieces: 'Cleaned',
+    serves: 'Serves 2–3',
+    weights: ['500g', '1 kg'],
     badge: null,
     badgeFresh: true,
     category: 'giblets',
   },
   {
     id: 13,
-    name: 'Country Chicken',
+    name: 'Country Chicken (Naatu Koli)',
     nameKn: 'ನಾಟಿ ಕೋಳಿ',
     desc: 'Authentic farm-raised desi chicken — superior taste and nutrition.',
     image: '/images/country-chicken-whole.png',
-    price: 520,
+    price: 700,
     priceUnit: '/ kg',
-    priceMax: 650,
+    priceMax: 850,
     pieces: '8–12 pieces',
     serves: 'Serves 3–4',
     weights: ['500g', '1 kg', '1.5 kg'],
     badge: 'Country',
     badgeFresh: true,
     category: 'country',
+  },
+  {
+    id: 17,
+    name: 'Country Chicken Curry Cut',
+    nameKn: 'ನಾಟಿ ಕೋಳಿ ಕರ್ರಿ ಕಟ್',
+    desc: 'Country chicken cut into perfect pieces for curry.',
+    image: '/images/country-chicken-whole.png',
+    price: 750,
+    priceUnit: '/ kg',
+    priceMax: 900,
+    pieces: '10–14 pieces',
+    serves: 'Serves 3–4',
+    weights: ['500g', '1 kg', '1.5 kg'],
+    badge: 'Country',
+    badgeFresh: true,
+    category: 'country',
+  },
+  {
+    id: 10,
+    name: 'Chicken Biryani Cut',
+    nameKn: 'ಚಿಕನ್ ಬಿರಿಯಾನಿ ಕಟ್',
+    desc: 'Medium-sized bone-in pieces, cut perfectly for dum biryani and pulao.',
+    image: '/images/chicken-biryani-cut.png',
+    price: 350,
+    priceUnit: '/ kg',
+    pieces: '8–10 pieces',
+    serves: 'Serves 2–3',
+    weights: ['500g', '1 kg'],
+    badge: 'Popular',
+    badgeFresh: true,
+    category: 'broiler',
   },
   {
     id: 14,
@@ -486,11 +534,72 @@ function CartModal({
 /* ============================================================
    MAIN PAGE
 ============================================================ */
+const priceKeyMapping: Record<number, string> = {
+  1: 'broiler-whole',
+  2: 'skinless-curry-cut',
+  3: 'boneless',
+  4: 'breast',
+  5: 'mince-keema',
+  6: 'wings',
+  7: 'drumsticks',
+  8: 'leg-pieces',
+  9: 'broiler-curry-cut',
+  10: 'broiler-curry-cut',
+  11: 'liver',
+  12: 'gizzard',
+  13: 'country-whole',
+  14: 'eggs-piece',
+  15: 'neck',
+  16: 'feet',
+  17: 'country-curry-cut',
+};
 export default function ChikenWorldPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [products, setProducts] = useState(baseProducts);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'prices'));
+        if (!querySnapshot.empty) {
+          const pricesData: any[] = [];
+          let latestUpdate: any = null;
+          
+          querySnapshot.forEach((doc) => {
+            const item = doc.data();
+            pricesData.push(item);
+            
+            if (item.updated_at) {
+              const itemDate = item.updated_at.toDate();
+              if (!latestUpdate || itemDate > latestUpdate) {
+                latestUpdate = itemDate;
+              }
+            }
+          });
+
+          setProducts(prev => prev.map(p => {
+            const mappedKey = priceKeyMapping[p.id];
+            const priceData = pricesData.find(d => d.item_key === mappedKey);
+            if (priceData) {
+              return { ...p, price: priceData.price };
+            }
+            return p;
+          }));
+          
+          if (latestUpdate) {
+            setLastUpdated(latestUpdate.toLocaleString());
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching prices:', err);
+      }
+    };
+    fetchPrices();
+  }, []);
 
   const filtered = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
   
@@ -660,8 +769,16 @@ export default function ChikenWorldPage() {
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
             <div className="section-header" style={{ marginBottom: 0 }}>
               <span className="section-label">Our Menu</span>
-              <h2 className="section-title">Fresh Chicken Cuts</h2>
-              <p className="section-subtitle">All products are freshly prepared daily. Reserve on WhatsApp & collect.</p>
+              <h2 className="section-title">
+                Fresh Chicken Cuts
+                <span style={{ fontSize: '0.8rem', background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: '20px', marginLeft: '10px', verticalAlign: 'middle', fontWeight: 600, display: 'inline-block' }}>Today's Fresh Prices</span>
+              </h2>
+              <p className="section-subtitle">
+                All products are freshly prepared daily. Reserve on WhatsApp & collect.
+                <br/>
+                <span style={{ color: '#d97706', fontWeight: 500 }}>* Note: Prices will change as per the daily market rates.</span>
+              </p>
+              {lastUpdated && <p style={{ fontSize: '0.8rem', color: '#666', marginTop: 4, fontWeight: 500 }}>Prices Last Updated: {lastUpdated}</p>}
             </div>
           </div>
 
