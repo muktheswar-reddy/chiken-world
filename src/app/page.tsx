@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Phone, MapPin, Clock, X, Minus, Plus, ChevronRight, Menu, ShoppingCart } from 'lucide-react';
-import { db } from '@/lib/firebase';
-import { collection, getDocs } from 'firebase/firestore';
 
 /* ============================================================
    DATA
@@ -559,47 +557,6 @@ export default function ChikenWorldPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [products, setProducts] = useState(baseProducts);
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchPrices = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'prices'));
-        if (!querySnapshot.empty) {
-          const pricesData: any[] = [];
-          let latestUpdate: any = null;
-          
-          querySnapshot.forEach((doc) => {
-            const item = doc.data();
-            pricesData.push(item);
-            
-            if (item.updated_at) {
-              const itemDate = item.updated_at.toDate();
-              if (!latestUpdate || itemDate > latestUpdate) {
-                latestUpdate = itemDate;
-              }
-            }
-          });
-
-          setProducts(prev => prev.map(p => {
-            const mappedKey = priceKeyMapping[p.id];
-            const priceData = pricesData.find(d => d.item_key === mappedKey);
-            if (priceData) {
-              return { ...p, price: priceData.price };
-            }
-            return p;
-          }));
-          
-          if (latestUpdate) {
-            setLastUpdated(latestUpdate.toLocaleString());
-          }
-        }
-      } catch (err) {
-        console.error('Error fetching prices:', err);
-      }
-    };
-    fetchPrices();
-  }, []);
 
   const filtered = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
   
@@ -778,7 +735,6 @@ export default function ChikenWorldPage() {
                 <br/>
                 <span style={{ color: '#d97706', fontWeight: 500 }}>* Note: Prices will change as per the daily market rates.</span>
               </p>
-              {lastUpdated && <p style={{ fontSize: '0.8rem', color: '#666', marginTop: 4, fontWeight: 500 }}>Prices Last Updated: {lastUpdated}</p>}
             </div>
           </div>
 
