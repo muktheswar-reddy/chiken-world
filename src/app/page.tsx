@@ -300,7 +300,7 @@ const storeHours = [
    HELPERS & TYPES
 ============================================================ */
 
-export type Product = typeof products[0];
+export type Product = typeof baseProducts[0];
 
 export interface CartItem {
   id: string; // unique id for cart entry
